@@ -6,9 +6,9 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
-$servername = "localhost";
+$servername = "stan-mysql";
 $username = "root";
-$dbpassword = "";
+$dbpassword = "password";
 $dbname = "redstream_db";
 $conn = new mysqli($servername, $username, $dbpassword, $dbname);
 if ($conn->connect_error) {
