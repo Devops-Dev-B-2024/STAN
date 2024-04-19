@@ -121,3 +121,46 @@ spec:
             - containerPort: 80
           imagePullPolicy: IfNotPresent
 ---
+# php-apache ingress
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: stan-php-apache
+  annotations:
+    php-apache.ingress.kubernetes.io/rewrite-target: /
+spec:
+  tls:
+    - hosts:
+        - 127.0.0.1.sslip.io
+      secretName: stan-php-apache-tls
+  rules:
+    - host: 127.0.0.1.sslip.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: stan-php-apache
+                port:
+                  number: 80
+--- 
+# phpmyadmin ingress
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: stan-phpmyadmin
+  annotations:
+    phpmyadmin.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: stan-phpmyadmin.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: stan-phpmyadmin
+                port:
+                  number: 81
