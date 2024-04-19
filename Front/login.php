@@ -6,9 +6,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = isset($_POST["email"]) ? htmlspecialchars($_POST["email"]) : "";
     $password = isset($_POST["password"]) ? $_POST["password"] : "";
 
-    $servername = "localhost";
+    $servername = "stan-mysql";
     $username = "root";
-    $dbpassword = "";
+    $dbpassword = "password";
     $dbname = "redstream_db";
     $conn = new mysqli($servername, $username, $dbpassword, $dbname);
     if ($conn->connect_error) {
@@ -201,7 +201,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <nav class="navbar container" data-navbar>
           <ul class="navbar-list">
             <li>
-              <a href="index.php" class="navbar-link" data-nav-link>Home</a>
+              <a href="index.html" class="navbar-link" data-nav-link>Home</a>
             </li>
             <li>
               <a href="#service" class="navbar-link" data-nav-link>Find donor</a>
