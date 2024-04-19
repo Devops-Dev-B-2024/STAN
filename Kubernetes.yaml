@@ -1,0 +1,123 @@
+# mysql service
+apiVersion: v1
+kind: Service
+metadata:
+  name: stan-mysql
+  labels:
+    app: stan-mysql
+spec:
+  ports:
+    - port: 3306
+  selector:
+    app: stan-mysql
+---
+# mysql deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stan-mysql
+  labels:
+    app: stan-mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stan-mysql
+  template:
+    metadata:
+      labels:
+        app: stan-mysql
+    spec:
+      containers:
+        - name: stan-mysql
+          image: mysql
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_DATABASE
+              value: redstream_db
+            - name: MYSQL_ROOT_PASSWORD
+              value: password
+---
+# phpmyadmin service
+apiVersion: v1
+kind: Service
+metadata:
+  name: stan-phpmyadmin
+  labels:
+    app: stan-phpmyadmin
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: stan-phpmyadmin
+---
+# phpmyadmin deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stan-phpmyadmin
+  labels:
+    app: stan-phpmyadmin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stan-phpmyadmin
+  template:
+    metadata:
+      labels:
+        app: stan-phpmyadmin
+    spec:
+      containers:
+        - name: stan-phpmyadmin
+          image: phpmyadmin/phpmyadmin
+          ports:
+            - containerPort: 80
+          env:
+            - name: PMA_HOST
+              value: stan-mysql
+            - name: PMA_PORT
+              value: "3306"
+            - name: PMA_USER
+              value: root
+            - name: PMA_PASSWORD
+              value: password
+---
+# php-apache service
+apiVersion: v1
+kind: Service
+metadata:
+  name: stan-php-apache
+  labels:
+    app: stan-php-apache
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: stan-php-apache
+---
+# php-apache deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stan-php-apache
+  labels:
+    app: stan-php-apache
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stan-php-apache
+  template:
+    metadata:
+      labels:
+        app: stan-php-apache
+    spec:
+      containers:
+        - name: stan-php-apache
+          image: php-apache:0.1.1
+          ports:
+            - containerPort: 80
+          imagePullPolicy: IfNotPresent
+---
