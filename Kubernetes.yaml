@@ -131,10 +131,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - 127.0.0.1.sslip.io
+        - web.sslip.io
       secretName: stan-php-apache-tls
   rules:
-    - host: 127.0.0.1.sslip.io
+    - host: web.127.0.0.1.sslip.io
       http:
         paths:
           - path: /
@@ -153,8 +153,12 @@ metadata:
   annotations:
     phpmyadmin.ingress.kubernetes.io/rewrite-target: /
 spec:
+  tls:
+    - hosts:
+        - phpmyadmin.sslip.io
+      secretName: stan-phpmyadmin-tls
   rules:
-    - host: stan-phpmyadmin.local
+    - host: phpmyadmin.127.0.0.1.sslip.io
       http:
         paths:
           - path: /
@@ -163,4 +167,4 @@ spec:
               service:
                 name: stan-phpmyadmin
                 port:
-                  number: 81
+                  number: 80
