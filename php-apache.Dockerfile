@@ -8,3 +8,6 @@ EXPOSE 80
 # docker build -t php-apache:VERSION -f .\php-apache.Dockerfile .      # Construit l'image à partir de ce Dockerfile
 # minikube service *SERVICE*                                           # Ouvre le service afin qu'il soit accessible
 # kubectl apply -f .\Kubernetes.yaml                                   # Applique le fichier de configuration Kubernetes
+
+# minikube addons enable ingress                                        # Active l'addon ingress
+# minikube tunnel                                                       # Permet de créer un tunnel entre le cluster et le réseau local
