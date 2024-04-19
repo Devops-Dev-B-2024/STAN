@@ -15,9 +15,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $area = isset($_POST["area"]) ? htmlspecialchars($_POST["area"]) : "";
     $landmarks = isset($_POST["landmarks"]) ? htmlspecialchars($_POST["landmarks"]) : "";
 
-    $servername = "localhost";
+    $servername = "stan-mysql";
     $username = "root";
-    $dbpassword = "";
+    $dbpassword = "password";
     $dbname = "redstream_db";
     $conn = new mysqli($servername, $username, $dbpassword, $dbname);
     if ($conn->connect_error) {
@@ -179,10 +179,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
   </header>
 
+  
   <main>
     <article>
         <section class="section hero" id="home" style="background-image: url('./assets/images/hero-bg.png'); margin: 0%;" aria-label="hero">
-            <!-- Login and Registration Form -->
+        
+        <?php
+          phpinfo();
+        ?>
+        
+        <!-- Login and Registration Form -->
             <div class="container">
               <div class="form-container">
                 <div class="form-title">Register</div>
