@@ -1,6 +1,5 @@
 FROM php:8.1.28-apache
 
-COPY ./sql-scripts/ /docker-entrypoint-initdb.d
 COPY ./Front/ /var/www/html/
 RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli  
 EXPOSE 80
