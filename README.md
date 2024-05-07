@@ -56,6 +56,12 @@ Projet red stream [Ici](https://github.com/WH1T3-E4GL3/project-red-stream)
 
 ## Requêtes supplémentaires :
 
+### Créer un tunnel entre le cluster et vôtre réseau local
+Une fois cette commande faite, vous pourrez accéder a phpmyadmin et aux site en utilisant les ingress (```phpmyadmin.127.0.0.1.sslip.io/``` et ```web.127.0.0.1.sslip.io```).
+```
+minikube tunnel
+```
+
 ### Arrêter minikube :
 ```
 minikube stop
