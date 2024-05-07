@@ -183,11 +183,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <main>
     <article>
         <section class="section hero" id="home" style="background-image: url('./assets/images/hero-bg.png'); margin: 0%;" aria-label="hero">
-        
-        <?php
-          phpinfo();
-        ?>
-        
+                
         <!-- Login and Registration Form -->
             <div class="container">
               <div class="form-container">
