@@ -1,13 +1,16 @@
 # Projet Stack WEB (Apache / MySQL / PHP)
 
 
-## Mise en place :
+## Mise en place, après avoir lancer Docker Desktop :
 
-### 1) Lancer Docker Desktop
-
-### 2) Lancer minikube :
+### 1) Lancer minikube :
 ```
 minikube start
+```
+
+### 2) Configuration afin utiliser le daemon Docker de Minikube
+```
+minikube docker-env | Invoke-Expression
 ```
 
 ### 3) Construire l'image Docker :
@@ -15,21 +18,32 @@ minikube start
 docker build -t php-apache:1.0.0 .
 ```
 
-### 4) Déploiement de l'image : 
-```
-kubectl set image deployment/php-apache-deployment php-apache=php-apache:0.1.0
-```
-
 ### 5) Appliquer la configuration Kubernetes :
 ```
 kubectl apply -f .\Kubernetes.yaml
 ```
 
-### 6) Lancer le service :
+### 6) Lancer le service php-apache :
 ```
-minikube service php-apache-service  
+minikube service stan-php-apache
 ```
 
+### 7) Lancer le service phpmyadmin :
+```
+minikube service stan-phpmyadmin
+```
+
+### 8) Fournir la base de donnée
+```
+Si nécéssaire, créer la base 'redstream_db', puis allez dans l'onglet 'SQL' de phpmyadmin, une fois fait, éxecuter le contenu du fichier 'redstream_db.sql' fourni.
+```
+
+### Ça y est ! Le site est opérationnel
+```
+Le site est maintenant fonctionnel.
+
+Disclaimer: A noter que le site à mal été développé, celui gère mal la connexion à la base de donnée, certaines pages peuvent ne pas fonctionner, mais la page register est 100% fonctionnelle.
+```
 
 ## Site Web : 
 
@@ -83,7 +97,8 @@ USE redstream_db;
 SHOW TABLES;
 ```
 
-### Configure pour utiliser le daemon Docker de Minikube
+### Si nécéssaire, voici comment déployer l'image : 
 ```
-minikube docker-env | Invoke-Expression
+kubectl set image deployment/php-apache-deployment php-apache=php-apache:0.1.0
 ```
+
