@@ -102,3 +102,9 @@ SHOW TABLES;
 kubectl set image deployment/php-apache-deployment php-apache=php-apache:0.1.0
 ```
 
+Projet réaliser par :  
+
+  - Nathan Oger
+  - Théo Manevit  
+  - Sarah Barrabé
+  - Ambre Rouillon  
