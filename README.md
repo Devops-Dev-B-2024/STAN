@@ -12,7 +12,7 @@ minikube start
 
 ### 3) Construire l'image Docker :
 ```
-docker build -t php-apache:1.0.0 -f .\Dockerfile .
+docker build -t php-apache:1.0.0 .
 ```
 
 ### 4) Déploiement de l'image : 
@@ -81,4 +81,9 @@ USE redstream_db;
 - Afficher les tables :
 ```
 SHOW TABLES;
+```
+
+### Configure pour utiliser le daemon Docker de Minikube
+```
+minikube docker-env | Invoke-Expression
 ```
