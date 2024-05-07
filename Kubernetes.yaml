@@ -116,7 +116,7 @@ spec:
     spec:
       containers:
         - name: stan-php-apache
-          image: php-apache:0.1.0
+          image: php-apache:1.0.0
           ports:
             - containerPort: 80
           imagePullPolicy: IfNotPresent
