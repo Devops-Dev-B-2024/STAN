@@ -9,14 +9,14 @@ CREATE TABLE registered_users (
     bloodgroup VARCHAR(10) NOT NULL,
     gender VARCHAR(10) NOT NULL,
     birthdate DATE NOT NULL,
-    weight(kg) INT NOT NULL,
+    `weight(kg)` INT NOT NULL,
     state VARCHAR(255) NOT NULL,
     zipcode INT NOT NULL,
     district VARCHAR(255) NOT NULL,
     area VARCHAR(255) NOT NULL,
     landmark VARCHAR(255) NOT NULL,
-    donations VARCHAR(255) NOT NULL,
-    received VARCHAR(255) NOT NULL
+    donations VARCHAR(255) NULL,
+    received VARCHAR(255) NULL
 );
 
 CREATE TABLE response_back (
